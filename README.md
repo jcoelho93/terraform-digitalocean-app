@@ -33,9 +33,9 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_alert_rules"></a> [alert\_rules](#input\_alert\_rules) | List of alert rules to create. Default is DEPLOYMENT\_FAILED and DOMAIN\_FAILED | `list(string)` | <pre>[<br/>  "DEPLOYMENT_FAILED",<br/>  "DOMAIN_FAILED"<br/>]</pre> | no |
-| <a name="input_branch"></a> [branch](#input\_branch) | Branch to deploy from | `string` | `"main"` | no |
+| <a name="input_branch"></a> [branch](#input\_branch) | Branch to deploy from. Required if type is `github`. Default is main | `string` | `"main"` | no |
 | <a name="input_domain"></a> [domain](#input\_domain) | Domain of the app | `string` | `null` | no |
-| <a name="input_github_repository"></a> [github\_repository](#input\_github\_repository) | GitHub repository to deploy from. eg. reportr-news/my-app | `string` | `null` | no |
+| <a name="input_github_repository"></a> [github\_repository](#input\_github\_repository) | GitHub repository to deploy from, required if type is `github`. eg. reportr-news/my-app | `string` | `null` | no |
 | <a name="input_health_check"></a> [health\_check](#input\_health\_check) | Health check configuration | <pre>object({<br/>    http_path             = optional(string)<br/>    port                  = optional(number)<br/>    initial_delay_seconds = optional(number)<br/>    period_seconds        = optional(number)<br/>    timeout_seconds       = optional(number)<br/>    success_threshold     = optional(number)<br/>    failure_threshold     = optional(number)<br/>  })</pre> | `null` | no |
 | <a name="input_image"></a> [image](#input\_image) | Container image to deploy. If not provided, the name of the app will be used | `string` | `null` | no |
 | <a name="input_image_tag"></a> [image\_tag](#input\_image\_tag) | Container image tag to deploy. Default is latest | `string` | `"latest"` | no |
@@ -44,10 +44,10 @@ No modules.
 | <a name="input_name"></a> [name](#input\_name) | Name of the app | `string` | n/a | yes |
 | <a name="input_notification_emails"></a> [notification\_emails](#input\_notification\_emails) | n/a | `list(string)` | <pre>[<br/>  "notifications@example.com"<br/>]</pre> | no |
 | <a name="input_region"></a> [region](#input\_region) | Region of the app. Default is Amsterdam | `string` | `"ams"` | no |
-| <a name="input_registry"></a> [registry](#input\_registry) | Container registry to pull the image from. Default is reportr-news | `string` | `"reportr-news"` | no |
+| <a name="input_registry"></a> [registry](#input\_registry) | Container registry to pull the image from. Required if type is `image` | `string` | `null` | no |
 | <a name="input_registry_credentials"></a> [registry\_credentials](#input\_registry\_credentials) | Image registry credentials, in the format username:password | `string` | `null` | no |
 | <a name="input_slack_notifications"></a> [slack\_notifications](#input\_slack\_notifications) | n/a | <pre>object({<br/>    channel = string<br/>    url     = optional(string)<br/>  })</pre> | `null` | no |
-| <a name="input_type"></a> [type](#input\_type) | Type of the app. One of 'image' or 'github' | `string` | `"image"` | no |
+| <a name="input_type"></a> [type](#input\_type) | Type of the app. One of `image` or `github` | `string` | `"image"` | no |
 | <a name="input_uptime_alert"></a> [uptime\_alert](#input\_uptime\_alert) | If true sets up an uptime check for the app. Default is true | `bool` | `true` | no |
 | <a name="input_uptime_check_regions"></a> [uptime\_check\_regions](#input\_uptime\_check\_regions) | List of regions to run the uptime check in. Default is eu\_west | `list(string)` | <pre>[<br/>  "eu_west"<br/>]</pre> | no |
 

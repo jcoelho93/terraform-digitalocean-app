@@ -12,7 +12,7 @@ variable "region" {
 variable "type" {
   type        = string
   default     = "image"
-  description = "Type of the app. One of 'image' or 'github'"
+  description = "Type of the app. One of `image` or `github`"
   validation {
     condition     = contains(["image", "github"], var.type)
     error_message = "Invalid type"
@@ -21,7 +21,7 @@ variable "type" {
 
 variable "github_repository" {
   type        = string
-  description = "GitHub repository to deploy from. eg. reportr-news/my-app"
+  description = "GitHub repository to deploy from, required if type is `github`. eg. reportr-news/my-app"
   default     = null
   validation {
     error_message = "If type is github then github_repository must be set."
@@ -31,8 +31,12 @@ variable "github_repository" {
 
 variable "branch" {
   type        = string
-  description = "Branch to deploy from"
+  description = "Branch to deploy from. Required if type is `github`. Default is main"
   default     = "main"
+  validation {
+    error_message = "If type is github then branch must be set."
+    condition     = var.type != "github" || var.branch != null
+  }
 }
 
 variable "domain" {
@@ -55,8 +59,12 @@ variable "instance_size" {
 
 variable "registry" {
   type        = string
-  description = "Container registry to pull the image from. Default is reportr-news"
-  default     = "reportr-news"
+  description = "Container registry to pull the image from. Required if type is `image`"
+  default     = null
+  validation {
+    error_message = "If type is image then registry must be set."
+    condition     = var.type != "image" || var.registry != null
+  }
 }
 
 variable "image" {
@@ -69,6 +77,10 @@ variable "image_tag" {
   type        = string
   description = "Container image tag to deploy. Default is latest"
   default     = "latest"
+  validation {
+    error_message = "If type is image then image_tag must be set."
+    condition     = var.type != "image" || var.image_tag != null
+  }
 }
 
 variable "registry_credentials" {
