@@ -111,14 +111,14 @@ variable "health_check" {
 variable "slack_notifications" {
   type = object({
     channel = string
-    url     = optional(string)
+    url     = string
   })
   default = null
 }
 
 variable "notification_emails" {
   type    = list(string)
-  default = ["notifications@example.com"]
+  default = []
 }
 
 variable "alert_rules" {

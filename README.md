@@ -42,11 +42,11 @@ No modules.
 | <a name="input_instance_count"></a> [instance\_count](#input\_instance\_count) | Number of instances to run. Default is 1 | `number` | `1` | no |
 | <a name="input_instance_size"></a> [instance\_size](#input\_instance\_size) | Size of the instances. Default is apps-s-1vcpu-0.5gb | `string` | `"apps-s-1vcpu-0.5gb"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the app | `string` | n/a | yes |
-| <a name="input_notification_emails"></a> [notification\_emails](#input\_notification\_emails) | n/a | `list(string)` | <pre>[<br/>  "notifications@example.com"<br/>]</pre> | no |
+| <a name="input_notification_emails"></a> [notification\_emails](#input\_notification\_emails) | n/a | `list(string)` | `[]` | no |
 | <a name="input_region"></a> [region](#input\_region) | Region of the app. Default is Amsterdam | `string` | `"ams"` | no |
 | <a name="input_registry"></a> [registry](#input\_registry) | Container registry to pull the image from. Required if type is `image` | `string` | `null` | no |
 | <a name="input_registry_credentials"></a> [registry\_credentials](#input\_registry\_credentials) | Image registry credentials, in the format username:password | `string` | `null` | no |
-| <a name="input_slack_notifications"></a> [slack\_notifications](#input\_slack\_notifications) | n/a | <pre>object({<br/>    channel = string<br/>    url     = optional(string)<br/>  })</pre> | `null` | no |
+| <a name="input_slack_notifications"></a> [slack\_notifications](#input\_slack\_notifications) | n/a | <pre>object({<br/>    channel = string<br/>    url     = string<br/>  })</pre> | `null` | no |
 | <a name="input_type"></a> [type](#input\_type) | Type of the app. One of `image` or `github` | `string` | `"image"` | no |
 | <a name="input_uptime_alert"></a> [uptime\_alert](#input\_uptime\_alert) | If true sets up an uptime check for the app. Default is true | `bool` | `true` | no |
 | <a name="input_uptime_check_regions"></a> [uptime\_check\_regions](#input\_uptime\_check\_regions) | List of regions to run the uptime check in. Default is eu\_west | `list(string)` | <pre>[<br/>  "eu_west"<br/>]</pre> | no |
@@ -55,5 +55,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_app_url"></a> [app\_url](#output\_app\_url) | n/a |
+| <a name="output_app_url"></a> [app\_url](#output\_app\_url) | Live URL of the app |
 <!-- END_TF_DOCS -->
