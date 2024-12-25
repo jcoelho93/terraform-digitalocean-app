@@ -10,4 +10,6 @@ lint:
 	docker run --rm --entrypoint sh ghcr.io/terraform-linters/tflint -c "tflint --init && tflint --recursive"
 
 validate:
-	terraform -chdir=tests/docker-app validate
+	terraform -chdir=examples/docker-app validate
+
+all: lint docs fmt validate

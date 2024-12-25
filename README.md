@@ -1,5 +1,7 @@
 # Terraform DigitalOcean App Module
 
+This module creates a DigitalOcean App Platform app, along with an uptime check and alert.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -46,6 +48,8 @@ No modules.
 | <a name="input_registry_credentials"></a> [registry\_credentials](#input\_registry\_credentials) | Image registry credentials, in the format username:password | `string` | `null` | no |
 | <a name="input_slack_notifications"></a> [slack\_notifications](#input\_slack\_notifications) | n/a | <pre>object({<br/>    channel = string<br/>    url     = optional(string)<br/>  })</pre> | `null` | no |
 | <a name="input_type"></a> [type](#input\_type) | Type of the app. One of 'image' or 'github' | `string` | `"image"` | no |
+| <a name="input_uptime_alert"></a> [uptime\_alert](#input\_uptime\_alert) | If true sets up an uptime check for the app. Default is true | `bool` | `true` | no |
+| <a name="input_uptime_check_regions"></a> [uptime\_check\_regions](#input\_uptime\_check\_regions) | List of regions to run the uptime check in. Default is eu\_west | `list(string)` | <pre>[<br/>  "eu_west"<br/>]</pre> | no |
 
 ## Outputs
 

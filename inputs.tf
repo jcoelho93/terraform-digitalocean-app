@@ -117,3 +117,16 @@ variable "alert_rules" {
     "DOMAIN_FAILED"
   ]
 }
+
+variable "uptime_alert" {
+  type        = bool
+  description = "If true sets up an uptime check for the app. Default is true"
+  default     = true
+
+}
+
+variable "uptime_check_regions" {
+  type        = list(string)
+  default     = ["eu_west"]
+  description = "List of regions to run the uptime check in. Default is eu_west"
+}

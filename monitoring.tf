@@ -1,12 +1,14 @@
 resource "digitalocean_uptime_check" "main" {
+  count   = var.uptime_alert ? 1 : 0
   name    = "${var.name}-uptime-check"
   target  = digitalocean_app.main.live_url
-  regions = ["eu_west"]
+  regions = var.uptime_check_regions
 }
 
 resource "digitalocean_uptime_alert" "main" {
+  count      = var.uptime_alert ? 1 : 0
   name       = "${var.name}-uptime-alert"
-  check_id   = digitalocean_uptime_check.main.id
+  check_id   = digitalocean_uptime_check.main[0].id
   type       = "down"
   comparison = "less_than"
   period     = "5m"
