@@ -1,3 +1,5 @@
 .terraform/
 .plan
 *.tfstate*
+*secret*
+.env*
